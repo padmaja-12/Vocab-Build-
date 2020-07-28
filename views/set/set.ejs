@@ -1,0 +1,19 @@
+<%- include('../partials/header'); %>
+
+<div class="container">
+    <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+    <% set.forEach(element => { %>
+        <div id="setName">
+           <h1><a href="/set/<%- element.index %>/words" style="color: black"><%= element.name %></a></h1>
+        </div>
+    <% }); %>
+    <div id="setName">
+        <form method="POST">
+            <label for="newSet">Write the name of the new Set</label>
+            <input type="text" name = "setName" placeholder="Write here">
+        </form>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer'); %>

@@ -1,0 +1,14 @@
+#setName {
+    width : 300px;
+    border : 3px solid #666999;
+    padding : 20px 20px 20px 20px;
+    margin : 10px 10px;
+    font-weight: 600;
+    font-size: larger;
+}
+
+@media (max-width:600px) {
+    #setName {
+        margin : 10px auto;
+    }
+}
