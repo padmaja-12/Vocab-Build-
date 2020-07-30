@@ -57,9 +57,36 @@ app.post("/set",(req,res) => {
 
 app.get("/set/:setId/words",(req,res) => {
     let setId = req.params.setId;
-    
+    axios.get('https://vocab-build-2.firebaseio.com/set/'+ setId + '.json')
+    .then(response => {
+        let words = [];
+        let s = 1;
+        for(let key in response.data){
+            words.push({w:response.data[key],index:s});
+            s=s+1;
+        }
+        words.pop();
+        res.render("set/eachSet",{words: words});
+    })
+    .catch(error => {
+        console.log(error);
+    });
 })
-
+app.post("/set/:setId/words", (req,res) => {
+    let setId = req.params.setId;
+    axios.post('https://vocab-build-2.firebaseio.com/set/'+ setId + '.json',{
+        name : req.body.word.name,
+        meaning : req.body.word.meaning,
+        mnemonic : req.body.word.mnemonic,
+        sentence : req.body.word.sentence
+    })
+    .then(response => {
+        res.redirect("/set/"+ setId + "/words");
+    })
+    .catch(error => {
+        console.log(error);
+    });
+})
 app.listen(8080,() => {
     console.log("Vocabulary-app is up and running on PORT : 8080");
 });

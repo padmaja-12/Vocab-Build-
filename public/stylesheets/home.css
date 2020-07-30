@@ -4,7 +4,12 @@
     padding : 50px 35%;
     margin : 10px;
     border-radius: 20px;
+    background-color: white;
 }
+body{
+    background-color: #fec5e5;
+}
+
 
 @media (max-width:600px) {
     #home {
