@@ -16,6 +16,12 @@
                        <div>Meaning : <span><%= element.w.meaning %></span></div>
                        <div>Mnemonics : <span><%= element.w.mnemonic %></span></div>
                        <div>Sentence : <span><%= element.w.sentence %></span></div>
+                       <div id = "btns">
+                         <a data-val="<%- element.indexOf %>" class="btn btn-success btn-lg" id="btn" data-toggle="modal" data-target="#anotherModal">CHANGE</a>
+                         <form action="/set/<%- setId %>/words?delete=<%- element.indexOf %>&_method=DELETE" method="POST">
+                          <button class="btn btn-danger btn-lg" id="btn">Delete</button>
+                         </form>
+                       </div>
                     </div>
                   </div>
                 </div>
@@ -47,13 +53,13 @@
         <div class="modal-body">
             <form method="post">
                 <label for="fname"><b>Enter the word : </b></label>
-                <input type="text"  name="word[name]" style="padding: 5px;width:100%">
+                <input type="text"  name="word[name]" style="padding: 5px;width:100%" required>
                 <label for="lname"><b>Explain the meaning of the word :</b></label>
-                <input type="text" name="word[meaning]" style="padding: 5px;width:100%">
+                <input type="text" name="word[meaning]" style="padding: 5px;width:100%"required>
                 <label for="lname"><b>Add a mnemonic:</b></label>
-                <input type="text" name="word[mnemonic]" style="padding: 5px;width:100%">
+                <input type="text" name="word[mnemonic]" style="padding: 5px;width:100%" required>
                 <label for="lname"><b>Make a sentence related to the word :</b></label>
-                <textarea type="text"  name="word[sentence]" style="padding: 5px;width:100%"></textarea>
+                <textarea type="text"  name="word[sentence]" style="padding: 5px;width:100%" required></textarea>
                 <div style="display:flex;justify-content: space-around;">
                     <div>
                         <input type="radio" name="word" value="Learning">
@@ -68,6 +74,31 @@
                     <label for="other">Mastered Word</label>
                     </div>   
                 </div> 
+                <input type="submit" class="btn btn-lg btn-success" value="Submit">          
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="anotherModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Make the changes!!</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form action="/set/<%- setId %>/words?change=&_method=PUT" method="post">
+                <label for="fname"><b>Enter the word : </b></label>
+                <input type="text"  name="word[name]" style="padding: 5px;width:100%" >
+                <label for="lname"><b>Enter the meaning of the word :</b></label>
+                <input type="text" name="word[meaning]" style="padding: 5px;width:100%" >
+                <label for="lname"><b>Enter the mnemonic:</b></label>
+                <input type="text" name="word[mnemonic]" style="padding: 5px;width:100%" >
+                <label for="lname"><b>Enter sentence related to the word :</b></label>
+                <textarea type="text"  name="word[sentence]" style="padding: 5px;width:100%" ></textarea>
                 <input type="submit" class="btn btn-lg btn-success" value="Submit">          
             </form>
         </div>

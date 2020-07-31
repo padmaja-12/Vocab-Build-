@@ -2,11 +2,13 @@ var express         = require("express"),
     bodyParser      = require("body-parser"),
     axios           = require("axios"),
     firebase        = require("firebase/app"),
+    methodOverride = require('method-override'),
     app             = express();
     require("firebase/auth");
     require("firebase/firestore");
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
+app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({extended: true}));
 var config = {
     apiKey: "AIzaSyB-voaCYOUak2Sp-q_7fyjC_oX6Kr3aZxY",
@@ -62,15 +64,36 @@ app.get("/set/:setId/words",(req,res) => {
         let words = [];
         let s = 1;
         for(let key in response.data){
-            words.push({w:response.data[key],index:s});
+            words.push({w:response.data[key],index:s,indexOf : key});
             s=s+1;
         }
         words.pop();
-        res.render("set/eachSet",{words: words});
+        res.render("set/eachSet",{words: words,setId : setId});
     })
     .catch(error => {
         console.log(error);
     });
+})
+
+
+
+app.delete("/set/:setId/words",(req,res) => {
+    let del = null;
+    del = req.query.delete;
+    let setId = req.params.setId;
+    if(del !== null){
+        axios.delete('https://vocab-build-2.firebaseio.com/set/'+ setId +'/'+ del + '.json')
+    .then(response => {
+        res.redirect("/set/"+ setId + "/words") ;
+    })
+    .catch(error => {
+        console.log(error);
+    });
+    }
+})
+app.put("/set/:setId/words", (req,res) => {
+    let change = req.query.change;
+    console.log(change);
 })
 app.post("/set/:setId/words", (req,res) => {
     let setId = req.params.setId;
