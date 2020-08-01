@@ -1,7 +1,8 @@
-<%- include('../partials/header'); %>
+<%- include('../partials/header',{id:id}); %>
 
 
 <div class="container">
+  <% if(words.length > 0){ %>
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <% words.forEach(element => { %>
@@ -17,15 +18,38 @@
                        <div>Mnemonics : <span><%= element.w.mnemonic %></span></div>
                        <div>Sentence : <span><%= element.w.sentence %></span></div>
                        <div id = "btns">
-                         <a data-val="<%- element.indexOf %>" class="btn btn-success btn-lg" id="btn" data-toggle="modal" data-target="#anotherModal">CHANGE</a>
-                         <form action="/set/<%- setId %>/words?delete=<%- element.indexOf %>&_method=DELETE" method="POST">
-                          <button class="btn btn-danger btn-lg" id="btn">Delete</button>
+                         <a class="btn btn-success btn-lg" id="btn" data-toggle="modal" data-target="#anotherModal<%= element.indexOf %>">CHANGE</a>
+                         <form action="/<%- id %>/set/<%- setId %>/words?delete=<%- element.indexOf %>&_method=DELETE" method="POST">
+                          <button class="btn btn-danger btn-lg" id="btn">DELETE</button>
                          </form>
                        </div>
                     </div>
                   </div>
                 </div>
            </div>
+           <div id="anotherModal<%= element.indexOf %>" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Make the changes!!</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form action="/<%- id %>/set/<%- setId %>/words?change=<%- element.indexOf %>&_method=PUT" method="post">
+                        <label for="fname"><b>Enter the word : </b></label>
+                        <input type="text"  name="word[name]" style="padding: 5px;width:100%" value="<%= element.w.name %>">
+                        <label for="lname"><b>Enter the meaning of the word :</b></label>
+                        <input type="text" name="word[meaning]" style="padding: 5px;width:100%" value="<%= element.w.meaning %>">
+                        <label for="lname"><b>Enter the mnemonic:</b></label>
+                        <input type="text" name="word[mnemonic]" style="padding: 5px;width:100%" value="<%= element.w.mnemonic %>">
+                        <label for="lname"><b>Enter sentence related to the word :</b></label>
+                        <input type="text"  name="word[sentence]" style="padding: 5px;width:100%" value="<%= element.w.sentence %>">
+                        <input type="submit" class="btn btn-lg btn-success" value="Submit" style="margin:5px;">         
+                    </form>
+                </div>
+              </div>
+            </div>
+          </div>
          <% }); %>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -37,6 +61,7 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
+    <% } %>
     <div id="icon">
         <i class="fa fa-plus-circle fa-3x" aria-hidden="true" data-toggle="modal" data-target="#myModal">Add A Word Here</i>
     </div>
@@ -66,7 +91,7 @@
                     <label for="male">New Word</label><br>
                     </div>
                     <div>
-                        <input type="radio" name="word" value="Reviewed">
+                        <input type="radio" name="word" value="Reviewed" >
                     <label for="female">Reviewed Word</label><br>
                     </div>
                     <div>
@@ -80,30 +105,6 @@
       </div>
     </div>
   </div>
-  <div id="anotherModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-  
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-            <h4 class="modal-title">Make the changes!!</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-body">
-            <form action="/set/<%- setId %>/words?change=&_method=PUT" method="post">
-                <label for="fname"><b>Enter the word : </b></label>
-                <input type="text"  name="word[name]" style="padding: 5px;width:100%" >
-                <label for="lname"><b>Enter the meaning of the word :</b></label>
-                <input type="text" name="word[meaning]" style="padding: 5px;width:100%" >
-                <label for="lname"><b>Enter the mnemonic:</b></label>
-                <input type="text" name="word[mnemonic]" style="padding: 5px;width:100%" >
-                <label for="lname"><b>Enter sentence related to the word :</b></label>
-                <textarea type="text"  name="word[sentence]" style="padding: 5px;width:100%" ></textarea>
-                <input type="submit" class="btn btn-lg btn-success" value="Submit">          
-            </form>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
 <%- include('../partials/footer'); %>

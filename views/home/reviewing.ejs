@@ -1,0 +1,52 @@
+<%- include('../partials/header',{id:id}); %>
+
+
+
+<div class="container">
+    <% if(words.length > 0) { %>
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <% words.forEach(element => { %>
+              <div class="carousel-item <%- element.index == 1 ? 'active' : '' %>">
+                <div id="scene">
+                  <div id="card">
+                    <div id="word-front">
+                      <%= element.w.name %>
+                    </div>
+                    <div id="word-back">
+                       <div>Word : <span><%= element.w.name %></span></div>
+                       <div>Meaning : <span><%= element.w.meaning %></span></div>
+                       <div>Mnemonics : <span><%= element.w.mnemonic %></span></div>
+                       <div>Sentence : <span><%= element.w.sentence %></span></div>
+                       <div id="btns">
+                        <form action="/<%- id %>/home/reviewing?learn=<%- element.indexOf %>&name=<%- element.w.name %>&meaning=<%- element.w.meaning %>&mnemonic=<%- element.w.mnemonic %>&sentence=<%- element.w.sentence %>" method="POST">
+                         <button class="btn btn-dark btn-lg" id="btn">MOVE TO LEARNING</button>
+                        </form>
+                        <form action="/<%- id %>/home/reviewing?master=<%- element.indexOf %>&name=<%- element.w.name %>&meaning=<%- element.w.meaning %>&mnemonic=<%- element.w.mnemonic %>&sentence=<%- element.w.sentence %>" method="POST">
+                            <button class="btn btn-dark btn-lg" id="btn">MOVE TO MASTERED</button>
+                        </form>
+                       </div>
+                    </div>
+                  </div>
+                </div>
+           </div>
+         <% }); %>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    <% } else { %> 
+    <div id="template">
+        SORRY,NO WORDS YET!!!
+    </div>
+    <% } %>
+</div>
+
+
+<%- include('../partials/footer'); %>
