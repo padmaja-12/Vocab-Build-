@@ -332,6 +332,6 @@ app.get("/logout",(req,res) => {
 })
 
 
-app.listen(8080 || process.env.PORT,() => {
+app.listen(process.env.PORT,() => {
     console.log("Vocabulary-app is up and running on PORT : 8080");
 });
