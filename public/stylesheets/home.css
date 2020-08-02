@@ -36,5 +36,11 @@ body{
     #landing {
         margin : 50% auto;
     }
+    #btnsa {
+        flex-direction: column;
+    }
 }
-
+#btnsa {
+    display: flex;
+    margin : 10px auto;
+}

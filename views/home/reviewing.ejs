@@ -18,7 +18,7 @@
                        <div>Meaning : <span><%= element.w.meaning %></span></div>
                        <div>Mnemonics : <span><%= element.w.mnemonic %></span></div>
                        <div>Sentence : <span><%= element.w.sentence %></span></div>
-                       <div id="btns">
+                       <div id="btnsa">
                         <form action="/<%- id %>/home/reviewing?learn=<%- element.indexOf %>&name=<%- element.w.name %>&meaning=<%- element.w.meaning %>&mnemonic=<%- element.w.mnemonic %>&sentence=<%- element.w.sentence %>" method="POST">
                          <button class="btn btn-dark btn-lg" id="btn">MOVE TO LEARNING</button>
                         </form>
