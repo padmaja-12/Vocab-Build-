@@ -291,7 +291,6 @@ app.post("/register",(req,res) => {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        alert(errorMessage);
         //console.log(errorMessage)
         res.redirect("/register")
       });
