@@ -38,6 +38,7 @@ body{
     }
     #btnsa {
         flex-direction: column;
+        margin : 10px;
     }
 }
 #btnsa {
