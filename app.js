@@ -291,6 +291,7 @@ app.post("/register",(req,res) => {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
+        alert(errorMessage);
         //console.log(errorMessage)
         res.redirect("/register")
       });
@@ -321,6 +322,15 @@ app.post("/login",(req,res) => {
           }
       });
 })
+
+app.get("/logout",(req,res) => {
+    firebase.auth().signOut().then(function() {
+        res.redirect("/");
+      }).catch(function(error) {
+        console.log(error);
+      });
+})
+
 
 app.listen(8080,() => {
     console.log("Vocabulary-app is up and running on PORT : 8080");

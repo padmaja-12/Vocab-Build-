@@ -37,13 +37,13 @@
                 <div class="modal-body">
                     <form action="/<%- id %>/set/<%- setId %>/words?change=<%- element.indexOf %>&_method=PUT" method="post">
                         <label for="fname"><b>Enter the word : </b></label>
-                        <input type="text"  name="word[name]" style="padding: 5px;width:100%" value="<%= element.w.name %>">
+                        <input type="text"  name="word[name]" style="padding: 5px;width:100%" value="<%= element.w.name %>"minlength="6">
                         <label for="lname"><b>Enter the meaning of the word :</b></label>
-                        <input type="text" name="word[meaning]" style="padding: 5px;width:100%" value="<%= element.w.meaning %>">
+                        <input type="text" name="word[meaning]" style="padding: 5px;width:100%" value="<%= element.w.meaning %>"minlength="6">
                         <label for="lname"><b>Enter the mnemonic:</b></label>
-                        <input type="text" name="word[mnemonic]" style="padding: 5px;width:100%" value="<%= element.w.mnemonic %>">
+                        <input type="text" name="word[mnemonic]" style="padding: 5px;width:100%" value="<%= element.w.mnemonic %>"minlength="6">
                         <label for="lname"><b>Enter sentence related to the word :</b></label>
-                        <input type="text"  name="word[sentence]" style="padding: 5px;width:100%" value="<%= element.w.sentence %>">
+                        <input type="text"  name="word[sentence]" style="padding: 5px;width:100%" value="<%= element.w.sentence %>"minlength="6">
                         <input type="submit" class="btn btn-lg btn-success" value="Submit" style="margin:5px;">         
                     </form>
                 </div>
@@ -78,13 +78,13 @@
         <div class="modal-body">
             <form method="post">
                 <label for="fname"><b>Enter the word : </b></label>
-                <input type="text"  name="word[name]" style="padding: 5px;width:100%" required>
+                <input type="text"  name="word[name]" style="padding: 5px;width:100%"minlength="6" required>
                 <label for="lname"><b>Explain the meaning of the word :</b></label>
-                <input type="text" name="word[meaning]" style="padding: 5px;width:100%"required>
+                <input type="text" name="word[meaning]" style="padding: 5px;width:100%"minlength="6"required>
                 <label for="lname"><b>Add a mnemonic:</b></label>
-                <input type="text" name="word[mnemonic]" style="padding: 5px;width:100%" required>
+                <input type="text" name="word[mnemonic]" style="padding: 5px;width:100%" minlength="6"required>
                 <label for="lname"><b>Make a sentence related to the word :</b></label>
-                <textarea type="text"  name="word[sentence]" style="padding: 5px;width:100%" required></textarea>
+                <textarea type="text"  name="word[sentence]" style="padding: 5px;width:100%"minlength="6" required></textarea>
                 <div style="display:flex;justify-content: space-around;">
                     <div>
                         <input type="radio" name="word" value="Learning">

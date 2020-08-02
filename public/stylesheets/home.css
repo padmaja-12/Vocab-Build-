@@ -21,8 +21,20 @@ body{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+#landing {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin : 15% auto;
+}
+
 @media (max-width:600px) {
     #home {
         margin : 10px auto;
     }
+    #landing {
+        margin : 50% auto;
+    }
 }
+
